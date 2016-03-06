@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 from bs4 import BeautifulSoup as bs
-import requests, pynotify
+import requests
+from gi.repository import Notify as nt
+#from crontab import CronTab as ct
 
-no_of_notifs = 5
-
-icon  = "/home/varun/Desktop/git/Announcement/srmuniv_icon.png"
+no_of_notifs = 2
+'''
+os.environ.setdefault("DBUS_SESSION_BUS_ADDRESS", "unix:abstract=/tmp/dbus-M0JCXXbuhC")
+os.environ.setdefault('XAUTHORITY', '/home/user/.Xauthority')
+os.environ.setdefault('DISPLAY', ':0.0')'''
+icon  = "/home/varun/Desktop/git/srmAnnouncementInformer/srmuniv_icon.png"
 url = "http://www.srmuniv.ac.in/Announcements"
 
 def get_soup(url):
@@ -14,7 +19,6 @@ def get_soup(url):
 	return soup
 
 def take_n(n, soup):
-	print len(soup)
 	for i in range(n):
 		get_date(soup[i])
 
@@ -27,9 +31,10 @@ def get_head(soup, date):
 	notify(date, heading)
 
 def notify(date, heading):
-	pynotify.init ("icon-summary-body")
-	pynotify.Notification(date, heading, icon).show()
+	nt.init("App Name")
+	nt.Notification.new(date, heading, icon).show()
 
 if __name__ == "__main__":
 	soup = get_soup(url)
 	take_n(no_of_notifs, soup)
+	
