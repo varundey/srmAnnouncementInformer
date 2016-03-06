@@ -2,14 +2,10 @@
 from bs4 import BeautifulSoup as bs
 import requests
 from gi.repository import Notify as nt
-#from crontab import CronTab as ct
 
 no_of_notifs = 2
-'''
-os.environ.setdefault("DBUS_SESSION_BUS_ADDRESS", "unix:abstract=/tmp/dbus-M0JCXXbuhC")
-os.environ.setdefault('XAUTHORITY', '/home/user/.Xauthority')
-os.environ.setdefault('DISPLAY', ':0.0')'''
-icon  = "/home/varun/Desktop/git/srmAnnouncementInformer/srmuniv_icon.png"
+
+icon  = "/home/varun/Desktop/git/srmAnnouncementInformer/assets/srmuniv_icon.png"
 url = "http://www.srmuniv.ac.in/Announcements"
 
 def get_soup(url):
@@ -37,4 +33,3 @@ def notify(date, heading):
 if __name__ == "__main__":
 	soup = get_soup(url)
 	take_n(no_of_notifs, soup)
-	
