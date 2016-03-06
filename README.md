@@ -4,10 +4,14 @@
 ## Demo
 ![usage](/assets/usage.gif)
 
-### How to run
+### How to
 ```
 $ git clone https://github.com/varundey/srmAnnouncementInformer.git
 $ cd srmAnnouncementInformer/
+$ nano announcer.py
+```
+* Change the number of notifications you want to see from the top in the global variable name `no_of_notifs`. Max is 10
+```
 $ python announcer.py
 ```
 
@@ -23,8 +27,8 @@ $ apt-get install libnotify-bin
 ##### Coz who doesn't like some add-ons
 The announcer.py file can be set under as a cron-job to be run at every minute/hour/boot. Alas the OSD of linux kernel and cronTab are set up under different environment, and thus we have to work our way around a bit. In order to create a cronjob for the python file, keep reading:
 ```
- chmod 700 srmAnnouncementInformer/bin/export_x_info
- sh srmAnnouncementInformer/bin/export_x_info
+$ chmod 700 srmAnnouncementInformer/bin/export_x_info
+$ sh srmAnnouncementInformer/bin/export_x_info
 ```
 * Now open Dash and under Startup Applications, add the `export_x_info` script
 * Under `crontab -e` add the following two lines in the begining
